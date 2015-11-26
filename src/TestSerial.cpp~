@@ -16,7 +16,7 @@ int main(int argc, char **argv  )
 
 	//define a nodehandle and define the rate for the "ros while loop"
 	ros::NodeHandle nh;
-	ros::Rate rate(100);
+//	ros::Rate rate(100);
 
 	ROS_INFO("Ros is initialized");
 
@@ -109,8 +109,9 @@ int main(int argc, char **argv  )
   //
   //    while( serial_port.rdbuf()->in_avail() > 0 )
 
-	while(ros::ok())
-     {
+	//while(ros::ok())
+	while(1)
+    	{
 		char out_buf[8];
 		
 		//Define data
@@ -125,16 +126,17 @@ int main(int argc, char **argv  )
 
 		//write data to serial port.
 		if(serial_port.IsOpen()){
-			ROS_INFO("1");
+			ROS_INFO("voor");
      			serial_port.write(out_buf, 8);
-			ROS_INFO("2");
+			ROS_INFO("naaa");
 			//serial_port.writechar
 		} else{
 			ROS_ERROR("Serial port is closed");
 		}
 		
 		ROS_INFO_ONCE("We doen het");
-	    	rate.sleep();
+	    	//rate.sleep();
+		usleep(100000);
 	 }
 
 	serial_port.Close();
